@@ -1,0 +1,18 @@
+{
+    "Lua.diagnostics.globals": [
+        "LibStub",
+        "UIParent",
+        "CreateFrame",
+        "DiesalFontNormal",
+        "GetCursorPosition",
+        "GetScreenHeight",
+        "GetScreenWidth",
+        "GetSpellInfo",
+        "GetBonusBarOffset",
+        "GetDodgeChance",
+        "GetPrimaryTalentTree",
+        "GetCombatRatingBonus",
+        "PlaySound",
+        "IsShiftKeyDown"
+    ]
+}
