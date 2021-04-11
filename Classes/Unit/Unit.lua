@@ -1,7 +1,7 @@
 local _ , psy = ...
 local Unit = psy.Classes.Unit
 local p = psy.Protected
-local g = psy.useGUID
+local g = psy.UseGUID
 
 
 function Unit:New(GUID)
@@ -19,6 +19,7 @@ function Unit:New(GUID)
     else
         self.Height = 2
     end
+    psy.Functions.AuraCache.Refresh(GUID)
     -- set placeholder for properties that need to be updated as they change
     self.X, self.Y, self.Z = nil, nil, nil
     self.Distance = nil
@@ -54,7 +55,7 @@ function Unit:GetDistance(OtherUnit)
     if not self.X or not OtherUnit.X then
         return math.huge
     end
-    local distance = math.sqrt(((self.PosX - OtherUnit.PosX) ^ 2) + ((self.PosY - OtherUnit.PosY) ^ 2) + ((self.PosZ - OtherUnit.PosZ) ^ 2)) - ((self.CombatReach or 0) + (OtherUnit.CombatReach or 0))
+    local distance = math.sqrt(((self.X - OtherUnit.X) ^ 2) + ((self.Y - OtherUnit.Y) ^ 2) + ((self.Z - OtherUnit.Z) ^ 2)) - ((self.CombatReach or 0) + (OtherUnit.CombatReach or 0))
     if OtherUnit == psy.Player then
         self.Distance = distance
     end

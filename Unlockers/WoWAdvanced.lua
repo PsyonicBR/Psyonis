@@ -243,11 +243,13 @@ local UnlockList = {
 -- functions exported to BadRotations
 --------------------------------------------------------------------------------------------------------------------------------
 local _, psy = ...
+psy.Protected = {}
+psy.UseGUID = {}
 local p = psy.Protected
-local g = psy.useGUID
+local g = psy.UseGUID
 local wa = nil
 local funcTagCopies = {}
-local funcUnlockCopies
+local funcUnlockCopies = {}
 
 -- helper function
 local function stringsplit(inputstr, sep)

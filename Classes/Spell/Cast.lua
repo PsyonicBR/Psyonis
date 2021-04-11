@@ -1,7 +1,7 @@
 local _ , psy = ...
 local Spell = psy.Classes.Spell
 local nUnit = psy.Classes.Unit
-local p = psy.Protected
+local g = psy.UseGUID
 
 -- Credit to DMW devs for this function https://github.com/fiskee/DoMeWhen/blob/master/Classes/Spell/Cast.lua
 
@@ -14,7 +14,7 @@ function Spell:Cast(Unit)
         end
     end
     if self:IsReady() and Unit:GetDistance() <= self.MaxRange then
-        p.CastSpellByName(self.SpellName, Unit.GUID)
+        g.CastSpellByName(self.SpellName, Unit.GUID)
         self.LastBotTarget = Unit.GUID
         return true
     end

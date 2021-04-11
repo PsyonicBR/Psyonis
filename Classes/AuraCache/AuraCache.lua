@@ -5,7 +5,7 @@ local AuraCache = psy.Functions.AuraCache
 local Buff = psy.Classes.Buff
 local Debuff = psy.Classes.Debuff
 local p = psy.Protected
-local g = psy.useGUID
+local g = psy.UseGUID
 
 -- Credit to DMW devs for this function https://github.com/fiskee/DoMeWhen/blob/master/Classes/Aura/Cache.lua
 

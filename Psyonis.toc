@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Title: Psyonis
 ## Author: Psyonic
-## Version: 0.2
+## Version: 0.3
 
 ## Libs
 
@@ -21,12 +21,29 @@ Libs\!LibDraw\LibDraw.lua
 Libs\LibGroupInSpecT-1.1\LibGroupInSpecT-1.1.lua
 #@end-no-lib-strip@
 
-Unlockers/Luabox.lua
-Unlockers/WoWAdvanced.lua
+Unlockers\Luabox.lua
+Unlockers\WoWAdvanced.lua
 Unlocker.lua
 
 Core.lua
-Classes/CreateClasses.lua
+Classes\CreateClasses.lua
 
 Classes\Unit\Unit.lua
 Classes\Unit\TimeToDie.lua
+
+Classes\Spell\Spell.lua
+Classes\Spell\Cast.lua
+Classes\Spell\LastCast.lua
+
+Classes\Player\Player.lua
+
+Classes\Buff\Buff.lua
+Classes\Debuff\Debuff.lua
+Classes\AuraCache\AuraCache.lua
+
+Classes\ObjectManager\ObjectManager.lua
+
+Constants\Spells\Global.lua
+
+Constants\Specs.lua
+Constants\Misc.lua

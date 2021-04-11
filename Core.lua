@@ -10,12 +10,11 @@ psy.Player = {}
 psy.UI = {}
 psy.Settings = {}
 psy.Pulses = 0
+psy.ObjectManager = {}
 psy.Timers = {
     OM = {},
     Rotation = {}
 }
-psy.Protected = {}
-psy.UseGUID = {}
 local Init = false
 local DebugStart
 local RotationCount = 0
@@ -44,14 +43,18 @@ f:SetScript("OnUpdate", function()
         return
     end
     if not psy.unlocked then
-        psy.findUnlocker()
+        psy.unlocked = psy.findUnlocker()
     end
     if psy.unlocked then
         if not psy.Player.Name then
             psy.Player = psy.Classes.Player(psy.UseGUID.UnitGUID("player"))
         end
         DebugStart = debugprofilestop()
-        psy.UpdateOM()
+        if not psy.ObjectManager.Count then
+            psy.ObjectManager = psy.Classes.ObjectManager()
+        end
+        psy.ObjectManager:Update()
+        psy.Player:Update()
         psy.Timers.OM.Last = debugprofilestop() - DebugStart
         DebugStart = debugprofilestop()
         if not psy.Player.Rotation then
@@ -77,7 +80,7 @@ f:SetScript("OnUpdate", function()
             -- end
         end
         DebugStart = debugprofilestop()
-        psy.UI.Debug.Run()
+        -- psy.UI.Debug.Run()
         psy.Timers.OM.Total = psy.Timers.OM.Total and (psy.Timers.OM.Total + psy.Timers.OM.Last) or psy.Timers.OM.Last
         psy.Timers.Rotation.Total =
             psy.Timers.Rotation.Total and (psy.Timers.Rotation.Total + psy.Timers.Rotation.Last) or

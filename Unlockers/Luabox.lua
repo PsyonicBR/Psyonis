@@ -1,6 +1,8 @@
 local _, psy = ...
+psy.Protected = {}
+psy.UseGUID = {}
 local p = psy.Protected
-local g = psy.useGUID
+local g = psy.UseGUID
 
 local TagHandlerList = {
 	"IsSpellInRange",
