@@ -6,6 +6,9 @@ local Debuff = psy.Classes.Debuff
 local p = psy.Protected
 local g = psy.useGUID
 
+local specFrame = CreateFrame("Frame")
+local levelFrame = CreateFrame("Frame")
+
 
 function Player:New(GUID)
     -- set properties that don't change
@@ -17,6 +20,7 @@ function Player:New(GUID)
     self.Distance = 0
     -- set placeholder for properties that need to be updated as they change
     self.Spec = psy.Constants.Spec[GetSpecializationInfo(GetSpecialization())] or ""
+    self.Level = g.UnitLevel(GUID)
     self:GetSpells()
 end
 
@@ -42,7 +46,6 @@ function Player:GetPower()
 end
 
 function Player:Update()
-    self.Spec = psy.Constants.Spec[GetSpecializationInfo(GetSpecialization())] or ""
     self.X, self.Y, self.Z = Player:Position()
     self.Health, self.HealthMax, self.HealthPct = Player:GetHealth()
     self.Power, self.PowerMax, self.PowerPct = Player:GetPower()
@@ -55,6 +58,28 @@ end
 
 function Player:GetDistance()
     return self.Distance
+end
+
+
+
+function Player:SetSpecialization()
+    self.Spec = psy.Constants.Spec[GetSpecializationInfo(GetSpecialization())] or ""
+end
+
+function Player:SetLevel(level)
+    self.Level = level
+end
+
+local function SetPlayerSpecialization(self, event, ...)
+    local unit = select(1, ...)
+    if unit == "player" then
+        return Player:SetSpecialization()
+    end
+end
+
+local function SetPlayerLevel(self, event, ...)
+    local level = select(1, ...)
+    return Player:SetLevel(level)
 end
 
 function Player:GetSpells()
@@ -90,6 +115,9 @@ function Player:GetSpells()
     end
 end
 
-
+levelFrame:RegisterEvent("PLAYER_LEVEL_UP")
+levelFrame:SetScript("OnEvent", SetPlayerLevel)
+specFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+specFrame:SetScript("OnEvent", SetPlayerSpecialization)
 
 
