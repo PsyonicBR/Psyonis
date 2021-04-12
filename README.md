@@ -1,4 +1,2 @@
 # Psyonis
-  An addon based on the hard work of the devs from BadRotations and DoMeWhen
-  https://github.com/fiskee/DoMeWhen
-  https://github.com/CuteOne/BadRotations
+  An addon based on the hard work of the devs from BadRotations (https://github.com/CuteOne/BadRotations) and DoMeWhen (https://github.com/fiskee/DoMeWhen)
