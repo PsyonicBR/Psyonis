@@ -54,7 +54,6 @@ f:SetScript("OnUpdate", function()
             psy.ObjectManager = psy.Classes.ObjectManager()
         end
         psy.ObjectManager:Update()
-        psy.Player:Update()
         psy.Timers.OM.Last = debugprofilestop() - DebugStart
         DebugStart = debugprofilestop()
         if not psy.Player.Rotation then

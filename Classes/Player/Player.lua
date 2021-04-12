@@ -3,6 +3,7 @@ local Player = psy.Classes.Player
 local Spell = psy.Classes.Spell
 local Buff = psy.Classes.Buff
 local Debuff = psy.Classes.Debuff
+local Unit = psy.Classes.Unit
 local p = psy.Protected
 local g = psy.UseGUID
 
@@ -36,8 +37,7 @@ function Player:Update()
     self.Instance = select(2, IsInInstance())
     self.Casting = g.UnitCastingInfo(self.GUID) or g.UnitChannelInfo(self.GUID)
     self.Combat = g.UnitAffectingCombat(self.GUID)
-    -- self.Moving = g.GetUnitSpeed(self.GUID) > 0
-    self.Target = g.UnitExists("target") and g.UnitGUID("target")
+    self.Moving = g.GetUnitSpeed(self.GUID) > 0
     self.PowerRegen = GetPowerRegen()
 end
 
@@ -46,7 +46,8 @@ function Player:GetDistance()
 end
 
 function Player:SetSpecialization()
-    self.Spec = psy.Constants.Spec[GetSpecializationInfo(GetSpecialization())] or ""
+    self.SpecID = GetSpecializationInfo(GetSpecialization())
+    self.Spec = psy.Constants.Specs[self.SpecID] or ""
 end
 
 function Player:SetLevel(level)

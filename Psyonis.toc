@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Title: Psyonis
 ## Author: Psyonic
-## Version: 0.3
+## Version: 0.3.1
 
 ## Libs
 
@@ -44,6 +44,9 @@ Classes\AuraCache\AuraCache.lua
 Classes\ObjectManager\ObjectManager.lua
 
 Constants\Spells\Global.lua
+Constants\Spells\Hunter.lua
 
 Constants\Specs.lua
 Constants\Misc.lua
+
+Rotations\Hunter\BeastMastery.lua

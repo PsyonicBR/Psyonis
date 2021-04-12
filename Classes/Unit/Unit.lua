@@ -31,6 +31,8 @@ function Unit:New(GUID)
     self.HasThreat = nil
     self.Health = nil
     self.HealthPercent = nil
+    self.Dead = nil
+    -- print("New unit created with ", GUID)
 end
 
 function Unit:GetPosition()
@@ -62,7 +64,7 @@ function Unit:GetDistance(OtherUnit)
     return distance
 end
 
-function Unit:RawDistance(OtherUnit)
+function Unit:GetRawDistance(OtherUnit)
     -- return distance between unit and player if no arg and distance already calculated this frame
     if OtherUnit == nil and self.RawDistance ~= nil then
         return self.RawDistance
@@ -101,12 +103,12 @@ function Unit:GetLineOfSight()
     if not self.X or not OtherUnit.X then
         return math.huge
     end
-    local LoS = p.TraceLine(self.PosX, self.PosY, self.PosZ + self.Height, OtherUnit.PosX, OtherUnit.PosY, OtherUnit.PosZ + OtherUnit.Height, 0x100010) == nil
+    local LoS = p.TraceLine(self.X, self.Y, self.Z + self.Height, OtherUnit.X, OtherUnit.Y, OtherUnit.Z + OtherUnit.Height, 0x100010) == nil
     self.LineOfSight = LoS
     return LoS
 end
 
-function Unit:Attackable()
+function Unit:IsAttackable()
     if self.Attackable == nil then
         self.Attackable = self:GetLineOfSight() and g.UnitCanAttack("player",self.GUID) or false
     end
@@ -154,4 +156,10 @@ function Unit:GetHealth()
     return self.Health, self.HealthPercent
 end
 
+function Unit:IsDead()
+    if self.Dead == nil then
+        self.Dead = g.UnitIsDeadOrGhost(self.GUID)
+    end
+    return self.Dead
+end
 

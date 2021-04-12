@@ -1,6 +1,5 @@
 local _ , psy = ...
 local Spell = psy.Classes.Spell
-local nUnit = psy.Classes.Unit
 local g = psy.UseGUID
 
 -- Credit to DMW devs for this function https://github.com/fiskee/DoMeWhen/blob/master/Classes/Spell/Cast.lua
@@ -8,7 +7,7 @@ local g = psy.UseGUID
 function Spell:Cast(Unit)
     if not Unit then
         if self.IsHarmful and psy.Player.Target then
-            Unit = nUnit(psy.Player.Target)
+            Unit = psy.Player.Target
         elseif self.IsHelpful then
             Unit = psy.Player
         end

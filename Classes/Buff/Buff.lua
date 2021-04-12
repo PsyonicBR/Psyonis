@@ -19,3 +19,16 @@ function Buff:Exist(Unit, OnlyPlayer)
     Unit = Unit or psy.Player
     return self:Query(Unit, OnlyPlayer) ~= nil
 end
+
+function Buff:Remain(Unit, OnlyPlayer)
+    OnlyPlayer = OnlyPlayer or false
+    Unit = Unit or psy.Player
+    local EndTime = select(6, self:Query(Unit, OnlyPlayer))
+    if EndTime then
+        if EndTime == 0 then
+            return 999
+        end
+        return (EndTime - psy.Time)
+    end
+    return 0
+end
